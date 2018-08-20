@@ -28,7 +28,7 @@ public class CalculatorTest {
 	}
 
 	@Test
-	public void testDivide() {
+	public void testDivide()   {
 		ICalculator calculator = new Calculator();
 		assertTrue(calculator.divide(4, 2) == 2);
 	}
