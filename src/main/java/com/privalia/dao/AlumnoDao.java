@@ -32,7 +32,7 @@ public class AlumnoDao implements IDao<Alumno>{
 		    return searchById(alumno.getIdAlumno());
 	}
 	
-	private Alumno searchById(int i) throws NumberFormatException, IOException {
+	private Alumno searchById(int id) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		
 		String currentLine = "";
@@ -42,20 +42,20 @@ public class AlumnoDao implements IDao<Alumno>{
 		 while (!alumnoFound) {
 		        currentLine = br.readLine();
 		        System.out.println(currentLine);
-		        String[] data = currentLine.split(",", 4);
-		        if(Integer.parseInt(data[0]) == i) {
+		        String[] userSplitInStringArray = currentLine.split(",", 4);
+		        if(Integer.parseInt(userSplitInStringArray[0]) == id) {
 		        	alumnoFound = true;
 		        }
 		 }
 		        
 		 
 		 br.close();
-		 String[] data = currentLine.split(",", 4);
+		 String[] userSplitInStringArray = currentLine.split(",", 4);
 		 Alumno foundAlumn = new Alumno();
-		 foundAlumn.setIdAlumno(Integer.parseInt(data[0]));
-		 foundAlumn.setNombre(data[1]);
-		 foundAlumn.setApellidos(data[2]);
-		 foundAlumn.setDni(data[3]);
+		 foundAlumn.setIdAlumno(Integer.parseInt(userSplitInStringArray[0]));
+		 foundAlumn.setNombre(userSplitInStringArray[1]);
+		 foundAlumn.setApellidos(userSplitInStringArray[2]);
+		 foundAlumn.setDni(userSplitInStringArray[3]);
 		 
 		 return foundAlumn;
 		
