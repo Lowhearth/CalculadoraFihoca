@@ -18,7 +18,7 @@ public class AlumnoDaoTest {
 		
 		Alumno alumno = new Alumno();
 		alumno.setApellidos("Vilanova");
-		alumno.setDni("46949999-T");
+		alumno.setDni("46949999-R");
 		alumno.setIdAlumno(1);
 		alumno.setNombre("Daniel");
 		AlumnoDao alumnoDao = new AlumnoDao();

@@ -22,35 +22,33 @@ public class AlumnoDao implements IDao<Alumno>{
 	public Alumno add(Alumno alumno) throws UnsupportedOperationException, IOException{
 		
 		FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
-		
-		try {
-			fw.write(alumno.toString());
-			String.format("%n");
-			fw.close();
-		 
-		 	}
-		catch (IOException ex){
-			throw ex;
-		}
-		finally {
-			fw.close();
 			
-		}
-		return searchById(alumno.getIdAlumno());
+			fw.write(alumno.toString());
+			fw.write(String.format(String.format("%n")));
+			fw.close();
+
+			
+		
+		    return searchById(alumno.getIdAlumno());
 	}
 	
 	private Alumno searchById(int i) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		
 		String currentLine = "";
+		
 		boolean alumnoFound = false;
+		
 		 while ( br.readLine() != null || !alumnoFound) {
 		        currentLine = br.readLine();
+		        System.out.println(currentLine);
 		        String[] data = currentLine.split(",", 4);
 		        if(Integer.parseInt(data[0]) == i) {
 		        	alumnoFound = true;
 		        }
 		 }
+		        
+		 
 		 br.close();
 		 String[] data = currentLine.split(",", 4);
 		 Alumno foundAlumn = new Alumno();
