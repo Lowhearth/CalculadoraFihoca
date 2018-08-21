@@ -26,15 +26,6 @@ public class AlumnoDaoTest {
 		AlumnoDao alumnoDao = new AlumnoDao();
 		Alumno alumnoInserted = alumnoDao.add(alumno);
 		
-		/*File x = createFile(); 
-		BufferedReader br = new BufferedReader(new FileReader(x));
-		
-		String currentLine = "";
-		 while ( br.readLine() != null) {
-		        currentLine = br.readLine();
-		 }
-		 br.close();
-		 assertTrue(alumno.toString().equals(currentLine));*/
 		assertTrue(alumnoInserted.equals(alumno));
 		
 	}
