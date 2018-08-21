@@ -8,8 +8,10 @@ public class FileManager {
 
 	
 	public static File createFile() {
-		if (searchFile() != null ) {
-			return searchFile();
+		
+		File sFile = searchFile();
+		if (sFile != null ) {
+			return sFile;
 		}
 		else {
 			File file = new File(path);

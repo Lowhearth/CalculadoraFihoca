@@ -39,7 +39,7 @@ public class AlumnoDao implements IDao<Alumno>{
 		
 		boolean alumnoFound = false;
 		
-		 while (!alumnoFound) {
+		 while (currentLine !=null && !alumnoFound) {
 		        currentLine = br.readLine();
 		        System.out.println(currentLine);
 		        String[] userSplitInStringArray = currentLine.split(",", 4);
