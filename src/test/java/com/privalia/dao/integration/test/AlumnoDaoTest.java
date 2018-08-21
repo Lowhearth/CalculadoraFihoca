@@ -1,5 +1,4 @@
 package com.privalia.dao.integration.test;
-import  com.privalia.util.FileManager;
 
 import static org.junit.Assert.*;
 
@@ -38,5 +37,7 @@ public class AlumnoDaoTest {
 		 assertTrue(alumno.toString().equals(currentLine));
 		
 	}
+	
+	
 
 }
