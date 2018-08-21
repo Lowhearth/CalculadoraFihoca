@@ -20,11 +20,13 @@ public class AlumnoDaoTest {
 	public void testAdd() throws UnsupportedOperationException, IOException {
 		Alumno alumno = new Alumno();
 		alumno.setApellidos("Vilanova");
-		alumno.setDni("46949999-R");
+		alumno.setDni("46949999-T");
 		alumno.setIdAlumno(1);
 		alumno.setNombre("Daniel");
 		AlumnoDao alumnoDao = new AlumnoDao();
 		Alumno alumnoInserted = alumnoDao.add(alumno);
+		
+		
 		
 		assertTrue(alumnoInserted.equals(alumno));
 		

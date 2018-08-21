@@ -28,8 +28,16 @@ public class AlumnoDao implements IDao<Alumno>{
 		        currentLine = br.readLine();
 		 }
 		 br.close();
+		 String[] data = currentLine.split(",", 4);
+		 
+		 Alumno insertedAlumno = new Alumno();
+		 insertedAlumno.setIdAlumno(Integer.parseInt(data[0]));
+		 insertedAlumno.setNombre(data[1]);
+		 insertedAlumno.setApellidos(data[2]);
+		 insertedAlumno.setDni(data[3]);
 		 
 		 
-		return alumno;
+		 
+		return insertedAlumno;
 	}
 }
