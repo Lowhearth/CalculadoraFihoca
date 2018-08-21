@@ -22,11 +22,20 @@ public class AlumnoDao implements IDao<Alumno>{
 	public Alumno add(Alumno alumno) throws UnsupportedOperationException, IOException{
 		
 		FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
-		fw.write(String.format("%n"));
-		fw.write(alumno.toString());
-		fw.close();
+		
+		try {
+			fw.write(alumno.toString());
+			String.format("%n");
+			fw.close();
 		 
-		 
+		 	}
+		catch (IOException ex){
+			throw ex;
+		}
+		finally {
+			fw.close();
+			
+		}
 		return searchById(alumno.getIdAlumno());
 	}
 	
