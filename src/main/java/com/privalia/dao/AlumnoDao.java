@@ -10,54 +10,65 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class AlumnoDao implements IDao<Alumno>{
-	
+public class AlumnoDao implements IDao<Alumno> {
+
 	public static File file = null;
-	
+
 	static {
 		file = createFile();
 	}
 
-	
-	public Alumno add(Alumno alumno) throws UnsupportedOperationException, IOException{
-		
-			
-			FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
-			fw.write(alumno.toString());
-			fw.write(String.format(String.format("%n")));
-			fw.close();
+	public Alumno add(Alumno alumno) throws UnsupportedOperationException, NumberFormatException, IOException {
 
-			
-		
-		    return searchById(alumno.getIdAlumno());
+		try {
+
+			FileWriter fileWriter = new FileWriter(file.getAbsoluteFile(), true);
+			fileWriter.write(alumno.toString());
+			fileWriter.write(String.format(String.format("%n")));
+			fileWriter.close();
+
+		}
+
+		catch (IOException exception) {
+			System.out.println("The alumn wasnt added to the file " + exception.getMessage());
+			throw exception;
+		}
+
+		return searchById(alumno.getIdAlumno());
 	}
-	
+
 	private Alumno searchById(int id) throws NumberFormatException, IOException {
-		BufferedReader br = new BufferedReader(new FileReader(file));
 		
-		String currentLine = "";
+		Alumno foundAlumn = new Alumno();
 		
-		boolean alumnoFound = false;
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			String currentLine = "";
+			boolean alumnoFound = false;
+			
+	
+				while (currentLine != null && !alumnoFound) {
+					currentLine = br.readLine();
+					String[] userSplitInStringArray = currentLine.split(",", 4);
+					if (Integer.parseInt(userSplitInStringArray[0]) == id) {
+						alumnoFound = true;
+					}
+				}
+	
+			br.close();
+			String[] userSplitInStringArray = currentLine.split(",", 4);
+			foundAlumn.setIdAlumno(Integer.parseInt(userSplitInStringArray[0]));
+			foundAlumn.setNombre(userSplitInStringArray[1]);
+			foundAlumn.setApellidos(userSplitInStringArray[2]);
+			foundAlumn.setDni(userSplitInStringArray[3]);
+		}
+		catch(IOException exception) {
+			System.out.println("Cant search that " + exception.getMessage());
+			throw exception;
+
 		
-		 while (currentLine !=null && !alumnoFound) {
-		        currentLine = br.readLine();
-		        System.out.println(currentLine);
-		        String[] userSplitInStringArray = currentLine.split(",", 4);
-		        if(Integer.parseInt(userSplitInStringArray[0]) == id) {
-		        	alumnoFound = true;
-		        }
-		 }
-		        
-		 
-		 br.close();
-		 String[] userSplitInStringArray = currentLine.split(",", 4);
-		 Alumno foundAlumn = new Alumno();
-		 foundAlumn.setIdAlumno(Integer.parseInt(userSplitInStringArray[0]));
-		 foundAlumn.setNombre(userSplitInStringArray[1]);
-		 foundAlumn.setApellidos(userSplitInStringArray[2]);
-		 foundAlumn.setDni(userSplitInStringArray[3]);
-		 
-		 return foundAlumn;
-		
+
+		}	
+		return foundAlumn;
 	}
 }

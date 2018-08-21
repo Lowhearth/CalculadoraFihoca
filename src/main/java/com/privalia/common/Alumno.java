@@ -6,6 +6,17 @@ public class Alumno {
 	private String nombre;
 	private String apellidos;
 	private String dni;
+	
+	public Alumno() {
+		
+	}
+	public Alumno(int idAlumno, String nombre, String apellidos, String dni) {
+		super();
+		this.idAlumno = idAlumno;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.dni = dni;
+	}
 	public int getIdAlumno() {
 		return idAlumno;
 	}
