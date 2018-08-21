@@ -21,8 +21,8 @@ public class AlumnoDao implements IDao<Alumno>{
 	
 	public Alumno add(Alumno alumno) throws UnsupportedOperationException, IOException{
 		
-		FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
 			
+			FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
 			fw.write(alumno.toString());
 			fw.write(String.format(String.format("%n")));
 			fw.close();
@@ -39,7 +39,7 @@ public class AlumnoDao implements IDao<Alumno>{
 		
 		boolean alumnoFound = false;
 		
-		 while ( br.readLine() != null || !alumnoFound) {
+		 while (!alumnoFound) {
 		        currentLine = br.readLine();
 		        System.out.println(currentLine);
 		        String[] data = currentLine.split(",", 4);
