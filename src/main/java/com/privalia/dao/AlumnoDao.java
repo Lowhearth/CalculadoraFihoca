@@ -12,7 +12,11 @@ import java.io.IOException;
 
 public class AlumnoDao implements IDao<Alumno>{
 	
-	public static File x = createFile(); 
+	public static File x = null;
+	
+	static {
+		x = createFile();
+	}
 
 	
 	public Alumno add(Alumno alumno) throws UnsupportedOperationException, IOException{
