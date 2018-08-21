@@ -2,11 +2,8 @@ package com.privalia.dao.integration.test;
 
 import static org.junit.Assert.*;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import static com.privalia.util.FileManager.createFile;
+
 
 
 import org.junit.Test;
