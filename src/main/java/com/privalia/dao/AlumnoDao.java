@@ -10,9 +10,11 @@ import java.io.IOException;
 
 public class AlumnoDao implements IDao<Alumno>{
 	
+	public static File x = createFile(); 
+
+	
 	public Alumno add(Alumno alumno) throws UnsupportedOperationException, IOException{
 		
-		File x = createFile(); 
 		FileWriter fw = new FileWriter(x.getAbsoluteFile(), true);
 		fw.write(String.format("%n"));
 		fw.write(alumno.toString());

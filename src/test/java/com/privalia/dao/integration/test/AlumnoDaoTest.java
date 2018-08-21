@@ -24,9 +24,9 @@ public class AlumnoDaoTest {
 		alumno.setIdAlumno(1);
 		alumno.setNombre("Daniel");
 		AlumnoDao alumnoDao = new AlumnoDao();
-		alumnoDao.add(alumno);
+		Alumno alumnoInserted = alumnoDao.add(alumno);
 		
-		File x = createFile(); 
+		/*File x = createFile(); 
 		BufferedReader br = new BufferedReader(new FileReader(x));
 		
 		String currentLine = "";
@@ -34,7 +34,8 @@ public class AlumnoDaoTest {
 		        currentLine = br.readLine();
 		 }
 		 br.close();
-		 assertTrue(alumno.toString().equals(currentLine));
+		 assertTrue(alumno.toString().equals(currentLine));*/
+		assertTrue(alumnoInserted.equals(alumno));
 		
 	}
 	
