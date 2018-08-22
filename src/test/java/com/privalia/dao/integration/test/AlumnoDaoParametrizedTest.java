@@ -13,7 +13,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import com.privalia.common.Alumno;
-import com.privalia.dao.AlumnoDao;
+import com.privalia.dao.TxtAlumnoDAO;
 
 
 @RunWith(Parameterized.class)
@@ -21,7 +21,7 @@ public class AlumnoDaoParametrizedTest {
 	
 	private Alumno alumnoEnviado = new Alumno();
 	private Alumno alumnoEsperado = new Alumno();
-	private AlumnoDao alumnoDao;
+	private TxtAlumnoDAO alumnoDao;
 	
 	
 	public AlumnoDaoParametrizedTest(Alumno alumnoEnviado, Alumno alumnoEsperado) {
@@ -30,7 +30,7 @@ public class AlumnoDaoParametrizedTest {
 	}
 	 @Before
 	 public void initialize() {
-		 alumnoDao = new AlumnoDao();
+		 alumnoDao = new TxtAlumnoDAO();
 	 }
 	 @Parameters
 	    public static Collection<Object[]> data() {

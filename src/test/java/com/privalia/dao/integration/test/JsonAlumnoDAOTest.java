@@ -4,32 +4,26 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 
-
-
 import org.junit.Test;
 
 import com.privalia.common.Alumno;
-import com.privalia.dao.TxtAlumnoDAO;
+import com.privalia.dao.JsonAlumnoDAO;
 
-public class AlumnoDaoTest {
+public class JsonAlumnoDAOTest {
 
 	@Test
-	public void testAdd() throws UnsupportedOperationException, IOException {
-		
+	public void test() throws NumberFormatException, UnsupportedOperationException, IOException {
 		Alumno alumno = new Alumno();
 		alumno.setApellidos("Vilanova");
 		alumno.setDni("46949999-R");
 		alumno.setIdAlumno(6);
 		alumno.setNombre("Daniel");
-		TxtAlumnoDAO alumnoDao = new TxtAlumnoDAO();
+		JsonAlumnoDAO alumnoDao = new JsonAlumnoDAO();
 		Alumno alumnoInserted = alumnoDao.add(alumno);
 		
 		
 		
 		assertTrue(alumnoInserted.equals(alumno));
-		
 	}
-	
-	
 
 }

@@ -10,12 +10,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class AlumnoDao implements IDao<Alumno> {
+public class TxtAlumnoDAO implements IDao<Alumno> {
 
+	public static String path = "Alumno.txt";
 	public static File file = null;
-
+	
 	static {
-		file = createFile();
+		file = createFile(path);
 	}
 
 	public Alumno add(Alumno alumno) throws UnsupportedOperationException, NumberFormatException, IOException {

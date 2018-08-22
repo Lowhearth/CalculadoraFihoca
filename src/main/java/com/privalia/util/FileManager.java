@@ -3,13 +3,13 @@ package com.privalia.util;
 import java.io.File;
 
 public class FileManager {
-	public static String path = "alumnos.txt";
+	
 	
 
 	
-	public static File createFile() {
+	public static File createFile(String path) {
 		
-		File sFile = searchFile();
+		File sFile = searchFile(path);
 		if (sFile != null ) {
 			return sFile;
 		}
@@ -20,7 +20,7 @@ public class FileManager {
 		}
 	}
 	
-	public static File searchFile() {
+	public static File searchFile(String path) {
 		File file = new File(path);
 		if(file.isFile()){
 			return file;
