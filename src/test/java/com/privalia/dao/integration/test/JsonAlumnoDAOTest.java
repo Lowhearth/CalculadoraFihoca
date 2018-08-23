@@ -16,7 +16,7 @@ public class JsonAlumnoDAOTest {
 		Alumno alumno = new Alumno();
 		alumno.setApellidos("Vilanova");
 		alumno.setDni("46949999-R");
-		alumno.setIdAlumno(6);
+		alumno.setIdAlumno(19);
 		alumno.setNombre("Daniel");
 		JsonAlumnoDAO alumnoDao = new JsonAlumnoDAO();
 		Alumno alumnoInserted = alumnoDao.add(alumno);
