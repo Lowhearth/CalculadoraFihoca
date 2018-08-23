@@ -37,7 +37,6 @@ public class JsonAlumnoDAO implements IDao<Alumno> {
 				List<Alumno> alumnos = new ArrayList<>(Arrays.asList(new Gson().fromJson(jsonText, Alumno[].class)));
 				alumnos.add(model);
 				String alumnosString = gson.toJson(alumnos.toArray(new Alumno[alumnos.size()]));
-				System.out.println("adding");
 				writer.write(alumnosString);
 				}
 			else {
