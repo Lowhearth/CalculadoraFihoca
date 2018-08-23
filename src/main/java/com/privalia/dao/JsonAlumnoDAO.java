@@ -6,17 +6,14 @@ package com.privalia.dao;
 import static com.privalia.util.FileManager.createFile;
 import static com.privalia.util.FileReader.readFile;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import com.privalia.common.Alumno;
 
 public class JsonAlumnoDAO implements IDao<Alumno> {
@@ -32,31 +29,39 @@ public class JsonAlumnoDAO implements IDao<Alumno> {
 	public Alumno add(Alumno model) throws JsonGenerationException, JsonMappingException, IOException {
 		
 		ObjectMapper mapper = new ObjectMapper();
+		if(file.exists()) {
+			String jsonText = readFile(file);
+			List<Alumno> alumnos = new ArrayList<>(Arrays.asList(mapper.readValue(jsonText, Alumno[].class)));
+			alumnos.add(model);
+			Alumno[] alumnosArray= (Alumno[]) alumnos.toArray(new Alumno[alumnos.size()]);
+			mapper.writeValue(file, alumnosArray);
+			System.out.println("added");
+		}
+		else {
+			Alumno [] alumnosArray = { model};
+			mapper.writeValue(file, alumnosArray);
+		}
 		
-		String jsonText = readFile(file);
 		
-		List<Alumno> alumnos = new ArrayList<>(Arrays.asList(mapper.readValue(jsonText, Alumno[].class)));
-		alumnos.add(model);
-		Alumno[] alumnosArray= (Alumno[]) alumnos.toArray(new Alumno[alumnos.size()]);
+		Alumno foundAlumn = searchById(model.getIdAlumno());
 		
-		mapper.writeValue(file, alumnosArray);
-		
-		
-		
-		return null;
+		return foundAlumn;
 	}
 	
 	
-	public Alumno searchById(Alumno model) throws IOException  {
+	public Alumno searchById(int id) throws IOException  {
 		
-		String jsonText = readFile(file);
 		ObjectMapper mapper = new ObjectMapper();
-		Alumno[] alumnos = mapper.readValue(jsonText, Alumno[].class);
+		String jsonText = readFile(file);
+		;
+		List<Alumno> alumnos = new ArrayList<>(Arrays.asList(mapper.readValue(jsonText, Alumno[].class)));
+		Alumno foundAlumno = alumnos.stream().filter(alumno -> alumno.getIdAlumno() == id)
+						.findFirst()
+						.get();
 		
+		return foundAlumno;
 		
-		
-		
-		throw new UnsupportedOperationException();
+	
 	}
 	
 	
