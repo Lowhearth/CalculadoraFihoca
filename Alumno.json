@@ -1,1 +1,14 @@
-[{"idAlumno":19,"nombre":"Daniel","apellidos":"Vilanova","dni":"46949999-R"},{"idAlumno":1,"nombre":"Daniel","apellidos":"Vilanova","dni":"3123421-r"},{"idAlumno":2,"nombre":"David","apellidos":"Lynch","dni":"231231412-t"},{"idAlumno":3,"nombre":"Stanley","apellidos":"Kubrick","dni":"34543534-t"}]
+[
+  {
+    "idAlumno": 2,
+    "nombre": "Daniel",
+    "apellidos": "Vilanova",
+    "dni": "38115062z"
+  },
+  {
+    "idAlumno": 3,
+    "nombre": "Linus",
+    "apellidos": "Trovalds",
+    "dni": "454545454x"
+  }
+]
