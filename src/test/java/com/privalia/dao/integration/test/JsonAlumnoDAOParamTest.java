@@ -8,6 +8,8 @@ import java.util.Collection;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
@@ -15,6 +17,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.privalia.common.Alumno;
 import com.privalia.dao.JsonAlumnoDAO;
 
+@RunWith(Parameterized.class)
 public class JsonAlumnoDAOParamTest {
 	
 	private Alumno alumnoEnviado;
@@ -51,6 +54,8 @@ public class JsonAlumnoDAOParamTest {
 
 	@Test
 	public void test() throws JsonGenerationException, JsonMappingException, IOException {
+		
+		System.out.println("testing");
 		Alumno alumnoDevuelto = alumnoDao.add(alumnoEnviado);
 		boolean resultado = alumnoDevuelto.equals(alumnoEsperado);
 		assertTrue(resultado);
