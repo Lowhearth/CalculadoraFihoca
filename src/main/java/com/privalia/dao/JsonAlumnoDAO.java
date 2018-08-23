@@ -28,7 +28,7 @@ public class JsonAlumnoDAO implements IDao<Alumno> {
 	
 	
 	@Override
-	public Alumno add(Alumno model) throws IOException, JsonGenerationException, JsonMappingException   {
+	public Alumno add(Alumno model) throws IOException   {
 		
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		try (FileWriter writer = new FileWriter(file.getAbsolutePath())){
@@ -45,16 +45,12 @@ public class JsonAlumnoDAO implements IDao<Alumno> {
 				writer.write(alumnosString);
 			
 			}
-		} catch (JsonGenerationException e)  {
+		} catch (IOException e)  {
 				
 				e.printStackTrace();
 				throw e;
 				
-		} catch (JsonMappingException e) {
-				
-				e.printStackTrace();
-				throw e;
-		}
+		} 
 			
 		
 		
