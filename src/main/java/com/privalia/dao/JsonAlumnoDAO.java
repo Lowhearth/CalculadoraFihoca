@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.privalia.common.Alumno;
@@ -26,29 +28,35 @@ public class JsonAlumnoDAO implements IDao<Alumno> {
 	
 	
 	@Override
-	public Alumno add(Alumno model) throws IOException   {
+	public Alumno add(Alumno model) throws IOException, JsonGenerationException, JsonMappingException   {
 		
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		try (FileWriter writer = new FileWriter(file.getAbsolutePath())){
-		if(file.length() > 0) {
-			String jsonText = readFile(file);
-			List<Alumno> alumnos = new ArrayList<>(Arrays.asList(new Gson().fromJson(jsonText, Alumno[].class)));
-			alumnos.add(model);
-			String alumnosString = gson.toJson(alumnos.toArray(new Alumno[alumnos.size()]));
-			System.out.println("adding");
-			writer.write(alumnosString);
+			if(file.length() > 0) {
+				String jsonText = readFile(file);
+				List<Alumno> alumnos = new ArrayList<>(Arrays.asList(new Gson().fromJson(jsonText, Alumno[].class)));
+				alumnos.add(model);
+				String alumnosString = gson.toJson(alumnos.toArray(new Alumno[alumnos.size()]));
+				System.out.println("adding");
+				writer.write(alumnosString);
+				}
+			else {
+				Alumno [] alumnosArray = {model};
+				String alumnosString = gson.toJson(alumnosArray);
+				writer.write(alumnosString);
+				writer.close();
 			}
-		else {
-			Alumno [] alumnosArray = {model};
-			String alumnosString = gson.toJson(alumnosArray);
-			writer.write(alumnosString);
-			writer.close();
-		}
-		} catch (IOException e) {
+			} catch (JsonGenerationException e)  {
+				
+				e.printStackTrace();
+				throw e;
+				
+			} catch (JsonMappingException e) {
+				
+				e.printStackTrace();
+				throw e;
+			}
 			
-			e.printStackTrace();
-		}
-		
 		
 		
 		Alumno foundAlumn = searchById(model.getIdAlumno());
