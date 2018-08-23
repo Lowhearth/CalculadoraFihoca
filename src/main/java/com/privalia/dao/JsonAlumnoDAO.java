@@ -43,18 +43,18 @@ public class JsonAlumnoDAO implements IDao<Alumno> {
 				Alumno [] alumnosArray = {model};
 				String alumnosString = gson.toJson(alumnosArray);
 				writer.write(alumnosString);
-				writer.close();
+			
 			}
-			} catch (JsonGenerationException e)  {
+		} catch (JsonGenerationException e)  {
 				
 				e.printStackTrace();
 				throw e;
 				
-			} catch (JsonMappingException e) {
+		} catch (JsonMappingException e) {
 				
 				e.printStackTrace();
 				throw e;
-			}
+		}
 			
 		
 		
@@ -69,9 +69,10 @@ public class JsonAlumnoDAO implements IDao<Alumno> {
 		Gson gson = new Gson();
 		String jsonText = readFile(file);
 		List<Alumno> alumnos = new ArrayList<>(Arrays.asList(gson.fromJson(jsonText, Alumno[].class)));
-		Alumno foundAlumno = alumnos.stream().filter(alumno -> alumno.getIdAlumno() == id)
-						.findFirst()
-						.get();
+		Alumno foundAlumno = alumnos.stream()
+									.filter(alumno -> alumno.getIdAlumno() == id)
+									.findFirst()
+									.get();
 		
 		return foundAlumno;
 		
