@@ -8,13 +8,15 @@ import org.junit.Test;
 
 import com.privalia.common.Alumno;
 import com.privalia.dao.DAOFactory;
+import com.privalia.dao.FACTORY_NAME;
 import com.privalia.dao.IDao;
 
 public class DAOFactoryTest {
 
 	@Test
 	public void test() {
-		DAOFactory daoFactory = DAOFactory.getDAOFactory(1);
+		
+		DAOFactory daoFactory = DAOFactory.getDAOFactory(FACTORY_NAME.TXT);
 		IDao<Alumno> iDao = daoFactory.getAlumnoDAO();
 		Alumno alumno = new Alumno(7,"Isaac", "Newton", "45345345-t");
 		try {
