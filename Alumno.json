@@ -1,11 +1,5 @@
 [
   {
-    "idAlumno": 2,
-    "nombre": "Daniel",
-    "apellidos": "Vilanova",
-    "dni": "38115062z"
-  },
-  {
     "idAlumno": 3,
     "nombre": "Linus",
     "apellidos": "Trovalds",
