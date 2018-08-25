@@ -13,8 +13,9 @@ public class FileReader {
 		byte[] data = new byte[(int) file.length()];
 		fileStream.read(data);
 		fileStream.close();
+		String r = new String(data, "UTF-8");
 		
-		return new String(data, "UTF-8");
+		return r;
 		
 	}
 

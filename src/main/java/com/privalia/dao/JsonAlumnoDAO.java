@@ -19,6 +19,7 @@ public class JsonAlumnoDAO implements IDao<Alumno> {
 	public static final String path = "Alumno.json";
 	public static 		File   file = null;
 	
+	
 	static {
 		file = createFile(path);
 	}
@@ -28,18 +29,23 @@ public class JsonAlumnoDAO implements IDao<Alumno> {
 	public Alumno add(Alumno model) throws IOException   {
 		
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		try (FileWriter writer = new FileWriter(file.getAbsolutePath())){
+		try {
 			if(file.length() > 0) {
+				
 				String jsonText = readFile(file);
+				FileWriter writer = new FileWriter(file.getAbsolutePath());
 				List<Alumno> alumnos = new ArrayList<>(Arrays.asList(new Gson().fromJson(jsonText, Alumno[].class)));
 				alumnos.add(model);
 				String alumnosString = gson.toJson(alumnos.toArray(new Alumno[alumnos.size()]));
 				writer.write(alumnosString);
+				writer.close();
 				}
 			else {
 				Alumno [] alumnosArray = {model};
 				String alumnosString = gson.toJson(alumnosArray);
+				FileWriter writer = new FileWriter(file.getAbsolutePath());
 				writer.write(alumnosString);
+				writer.close();
 			
 			}
 		} catch (IOException e)  {
